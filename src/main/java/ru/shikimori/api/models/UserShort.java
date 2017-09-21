@@ -41,4 +41,14 @@ public class UserShort {
         return User.getUserById(this.id);
     }
 
+    public static UserShort convertFromJsonModel(_UserShortInfo _userShort){
+        if (_userShort == null){ return null; }
+
+        UserShort userShort = new UserShort();
+        userShort.id           = _userShort.id;
+        userShort.nickname     = _userShort.nickname;
+        userShort.avatar       = _userShort.image;
+        userShort.lastOnline   = LocalDateTime.parse(_userShort.last_online_at, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
+        return userShort;
+    }
 }

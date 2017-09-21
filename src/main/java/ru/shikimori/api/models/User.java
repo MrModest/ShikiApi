@@ -6,6 +6,9 @@ import ru.shikimori.api.models.json._UserFullInfo;
 import ru.shikimori.api.models.json._UserShortInfo;
 import ru.shikimori.api.requests.QueryShell;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class User extends UserShort {
 
     //private int id;
@@ -25,7 +28,7 @@ public class User extends UserShort {
     public User(_UserFullInfo _user) {
         super(_user);
         if (_user == null){ return; }
-        convertFromJsonModels(_user);
+        convertFromJsonModel(_user);
     }
 
     //public int getId(){ return id; }
@@ -94,7 +97,7 @@ public class User extends UserShort {
         return friendList;
     }
 
-    private void convertFromJsonModels(_UserFullInfo _user){
+    private void convertFromJsonModel(_UserFullInfo _user){
         //this.id           = _user.id;
         //this.nickname     = _user.nickname;
         this.name         = _user.name;
