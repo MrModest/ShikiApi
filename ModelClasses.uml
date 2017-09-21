@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-6659.0" y="-3980.0">ru.shikimori.api.models.UserShort</node>
+    <node x="-6730.0" y="-3746.0">ru.shikimori.api.models.User</node>
+    <node x="-6078.666666666667" y="-3119.1666666666665">ru.shikimori.api.models.UserRateShort</node>
+    <node x="-6187.333333333334" y="-2814.166666666667">ru.shikimori.api.models.Genre</node>
+    <node x="-6762.636363636365" y="-4422.363636363636">ru.shikimori.api.models.Client</node>
+    <node x="-6659.0" y="-3387.0">ru.shikimori.api.models.TitleShort</node>
+    <node x="-6763.545454545456" y="-4251.454545454545">ru.shikimori.api.models.Credential</node>
+    <node x="-6769.0" y="-3024.1666666666665">ru.shikimori.api.models.Title</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.shikimori.api.models.Title" target="ru.shikimori.api.models.TitleShort">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="ru.shikimori.api.models.User" target="ru.shikimori.api.models.UserShort">
+      <point x="-98.25" y="-170.0" />
+      <point x="-6631.75" y="-3771.0" />
+      <point x="-6596.25" y="-3771.0" />
+      <point x="-62.75" y="92.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="-6374.166666666667" y="-2900.4166666666665" />
+  <SelectedNodes>
+    <node>ru.shikimori.api.models.Title</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ShikiApi:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ShikiApi_jar</output-path>
+    <root id="archive" name="ShikiApi.jar">
+      <element id="module-output" name="ShikiApi" />
+    </root>
+  </artifact>
+</component>
