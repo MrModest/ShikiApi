@@ -31,7 +31,7 @@ public class Credential {
         this.currentUser = User.getUserByCredential(this);
     }
 
-    public Credential(String nickname, String token, int id){
+    public Credential(String nickname, String token, int id) {
         this.id = id;
         this.nickname = nickname;
         this.token = token;
@@ -63,7 +63,7 @@ public class Credential {
             postArgs.put("password", password);
             return QueryShell.post("access_token", postArgs, _AccessToken.class).api_access_token;
         }
-        catch (Exception ex){
+        catch (NullPointerException ex){
             ErrorStack.PushLocalError("Credential.getAccessToken()", ex.getMessage());
             return null;
         }
@@ -73,7 +73,7 @@ public class Credential {
         try {
             return QueryShell.get("users/whoami", _WhoAmI.class, new Credential(nickname, token, -1)).id;
         }
-        catch (Exception ex){
+        catch (NullPointerException ex){
             ErrorStack.PushLocalError("Credential.getUserId()", ex.getMessage());
             return -1;
         }

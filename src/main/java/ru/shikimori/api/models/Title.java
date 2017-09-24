@@ -2,33 +2,35 @@ package ru.shikimori.api.models;
 
 import ru.shikimori.api.constants.TitleProgressStatus;
 import ru.shikimori.api.models.json._NameValueClass;
-import ru.shikimori.api.models.json._TitleFullInfo;
 
-public class Title extends TitleShort {
+public abstract class Title extends TitleShort {
 
-    private String[] englishNames;
-    private String[] japanesNames;
-    private String[] synonymNames;
-    private double score;
-    private String description;
-    private String descriptionHtml;
-    private String descriptionSource; // (?)
-    private boolean favoured;
-    private boolean anons;
-    private boolean ongoing;
-    private int threadId;
-    private int topicId;
-    private int myanimelistId;
-    private _NameValueClass[] ratesScoresStats;
-    private _NameValueClass[] ratesStatusesStats;
-    private Genre[] genres;
-    private UserRateShort userRate;
+    protected String[] englishNames;
+    protected String[] japanesNames;
+    protected String[] otherNames;
+    protected double score;
+    protected String description;
+    protected String descriptionHtml;
+    protected String descriptionSource; // (?)
+    protected boolean favoured;
+    protected boolean anons;
+    protected boolean ongoing;
+    protected int threadId;
+    protected int topicId;
+    protected int myanimelistId;
+    protected _NameValueClass[] ratesScoresStats;
+    protected _NameValueClass[] ratesStatusesStats;
+    protected Genre[] genres;
+    protected UserRateShort userRate;
 
-    public Title(_TitleFullInfo _title){
+    protected Title() {}
+
+    /*public Title(_TitleFullInfo _title){
+        super(_title);
         if (_title == null) { return; }
         this.englishNames = _title.english;
         this.japanesNames = _title.japanes;
-        this.synonymNames = _title.synonyms;
+        this.otherNames = _title.synonyms;
         this.score = _title.score;
         this.description = _title.description;
         this.descriptionHtml = _title.description_html;
@@ -41,9 +43,9 @@ public class Title extends TitleShort {
         this.myanimelistId = _title.myanimelist_id;
         this.ratesScoresStats = _title.rates_scores_stats;
         this.ratesStatusesStats = _title.rates_statuses_stats;
-        for (int i = 0; i < _title.genres.length; i++) { this.getGenres()[i] = new Genre(_title.genres[i]); }
-        this.userRate = new UserRateShort(_title.user_rate);
-    }
+        for (int i = 0; i < _title.genres.length; i++) { this.getGenres()[i] = Genre.convertFromJsonModel(_title.genres[i]); }
+        this.userRate = UserRateShort.convertFromJsonModel(_title.user_rate);
+    }*/
 
     public String[] getEnglishNames() {
         return englishNames;
@@ -53,8 +55,8 @@ public class Title extends TitleShort {
         return japanesNames;
     }
 
-    public String[] getSynonymNames() {
-        return synonymNames;
+    public String[] getOtherNames() {
+        return otherNames;
     }
 
     public double getScore() {
@@ -97,9 +99,9 @@ public class Title extends TitleShort {
         return myanimelistId;
     }
 
-    public int getRatesScoresStats(Integer score) {
+    public int getRatesScoresStats(int score) {
         for (int i = 0; i < ratesScoresStats.length; i++){
-            if (ratesScoresStats[i].name.equalsIgnoreCase(score.toString())){
+            if (ratesScoresStats[i].name.equalsIgnoreCase(new Integer(score).toString())){
                 return ratesScoresStats[i].value;
             }
         }
@@ -139,4 +141,5 @@ public class Title extends TitleShort {
     public UserRateShort getUserRate() {
         return userRate;
     }
+
 }
