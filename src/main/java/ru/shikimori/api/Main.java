@@ -14,16 +14,19 @@ public class Main {
 
         String outString = "";
 
-        /*
+        //*
         //Credential credential = new Credential("test2", "123");
         Credential credential = new Credential("MrModest", "kamil2322332");
         if (!credential.isLoginSuccess()){
             outString = "login failed!\n";
         }
         else {
-            System.out.println(Anime.getById(25, credential).getNextEpisodeDateTime());
+            Manga manga = Manga.getById(26, credential);
+            System.out.println(manga.getName());
+            User user = User.getUserById(4114);
+            System.out.println(user.getLastOnline());
         }
-        */
+        //*/
 
         //outString = new User(12).getNickname();
         //System.out.println(UserRate.getUserRatesByUserId(4114).length);

@@ -14,7 +14,7 @@ public class DateUtils {
         if (StringUtils.isBlank(str)){ return null; }
 
         try {
-            return LocalDateTime.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
+            return LocalDateTime.parse(str, DateTimeFormatter.ISO_OFFSET_DATE_TIME); //.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
         }
         catch (Exception ex){
             return null;
@@ -25,7 +25,7 @@ public class DateUtils {
         if (StringUtils.isBlank(str)){ return null; }
 
         try {
-            return LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return LocalDate.parse(str, DateTimeFormatter.ISO_LOCAL_DATE); //.ofPattern("yyyy-MM-dd")
         }
         catch (Exception ex){
             return null;

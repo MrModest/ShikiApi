@@ -1,13 +1,28 @@
 package ru.shikimori.api.models;
 
-import ru.shikimori.api.models.json._Studio;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Studio {
 
+    @SerializedName("id")
+    @Expose
     private int id;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @SerializedName("filtered_name")
+    @Expose
     private String filteredName;
+
+    @SerializedName("real")
+    @Expose
     private boolean real;
+
+    @SerializedName("image")
+    @Expose
     private String image;
 
     private Studio(){}
@@ -32,27 +47,4 @@ public class Studio {
         return image;
     }
 
-    public static Studio convertFromJsonModel(_Studio _studio){
-        if (_studio == null) { return null; }
-
-        Studio studio = new Studio();
-        studio.id = _studio.id;
-        studio.name = _studio.name;
-        studio.filteredName = _studio.filtered_name;
-        studio.real = _studio.real;
-        studio.image = _studio.image;
-
-        return studio;
-    }
-
-    public static Studio[] convertFromJsonModel(_Studio[] _studios){
-        if (_studios == null || _studios.length == 0) { return null; }
-
-        Studio[] studios = new Studio[_studios.length];
-        for (int i = 0; i < _studios.length; i++){
-            studios[i] = Studio.convertFromJsonModel(_studios[i]);
-        }
-
-        return studios;
-    }
 }

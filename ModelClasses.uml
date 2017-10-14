@@ -4,12 +4,13 @@
   <OriginalElement />
   <nodes>
     <node x="200.0" y="200.0">ru.shikimori.api.models.TitleFilter</node>
+    <node x="200.0" y="647.0">ru.shikimori.api.models.UserImage</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.1" x="561.7142857142846" y="410.0714285714282" />
+  <settings layout="Hierarchic Group" zoom="1.1" x="561.5454545454545" y="449.27272727272725" />
   <SelectedNodes>
-    <node>ru.shikimori.api.models.TitleFilter</node>
+    <node>ru.shikimori.api.models.UserImage</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

@@ -1,37 +1,50 @@
 package ru.shikimori.api.models;
 
-import ru.shikimori.api.models.json._TitleImage;
-import ru.shikimori.api.models.json._TitleShortInfo;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import ru.shikimori.api.utils.DateUtils;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public abstract class TitleShort {
 
+    @SerializedName("id")
+    @Expose
     protected int id;
+
+    @SerializedName("name")
+    @Expose
     protected String name;
+
+    @SerializedName("russian")
+    @Expose
     protected String russian;
-    protected _TitleImage image;
+
+    @SerializedName("image")
+    @Expose
+    protected TitleImage image;
+
+    @SerializedName("url")
+    @Expose
     protected String url;
+
+    @SerializedName("kind")
+    @Expose
     protected String kind;
+
+    @SerializedName("status")
+    @Expose
     protected String status;
-    protected LocalDate airedDate;
-    protected LocalDate releasedDate;
+
+    @SerializedName("aired_on")
+    @Expose
+    protected String airedDate;
+
+    @SerializedName("released_on")
+    @Expose
+    protected String releasedDate;
 
     protected TitleShort(){}
-
-    /*public TitleShort(_TitleShortInfo _titleShort){
-        if (_titleShort == null) { return; }
-        this.id = _titleShort.id;
-        this.name = _titleShort.name;
-        this.russian = _titleShort.russian;
-        this.image = _titleShort.image;
-        this.url = _titleShort.url;
-        this.kind = _titleShort.kind;
-        this.status = _titleShort.status;
-        this.airedDate = LocalDate.parse(_titleShort.aired_on, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        this.releasedDate = LocalDate.parse(_titleShort.released_on, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    }*/
 
     public int getId() {
         return id;
@@ -45,7 +58,7 @@ public abstract class TitleShort {
         return russian;
     }
 
-    public _TitleImage getImage() {
+    public TitleImage getImage() {
         return image;
     }
 
@@ -62,11 +75,11 @@ public abstract class TitleShort {
     }
 
     public LocalDate getAiredDate() {
-        return airedDate;
+        return DateUtils.formatDateFromString(airedDate);
     }
 
     public LocalDate getReleasedDate() {
-        return releasedDate;
+        return DateUtils.formatDateFromString(releasedDate);
     }
 
 }

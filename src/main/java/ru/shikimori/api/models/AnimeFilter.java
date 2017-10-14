@@ -10,5 +10,27 @@ public class AnimeFilter extends TitleFilter {
     private Studio[] studios;
 
 
+    public String getDuration() {
+        return duration.name();
+    }
 
+    public void setDuration(AnimeDuration duration) {
+        this.duration = duration;
+    }
+
+    public String getRating() {
+        return rating.name();
+    }
+
+    public void setRating(AnimeRating rating) {
+        this.rating = rating;
+    }
+
+    public String getStudios() {
+        return ArrayToStr(studios);
+    }
+
+    public void setStudios(Studio[] studios) {
+        this.studios = studios;
+    }
 }

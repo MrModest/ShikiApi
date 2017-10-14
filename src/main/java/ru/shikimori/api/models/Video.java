@@ -1,15 +1,36 @@
 package ru.shikimori.api.models;
 
-import ru.shikimori.api.models.json._Video;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Video {
 
+    @SerializedName("id")
+    @Expose
     private int id;
+
+    @SerializedName("url")
+    @Expose
     private String url;
+
+    @SerializedName("image_url")
+    @Expose
     private String imageUrl;
+
+    @SerializedName("player_url")
+    @Expose
     private String playerUrl;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @SerializedName("kind")
+    @Expose
     private String kind;
+
+    @SerializedName("hosting")
+    @Expose
     private String hosting;
 
     private Video(){}
@@ -40,32 +61,6 @@ public class Video {
 
     public String getHosting() {
         return hosting;
-    }
-
-    public static Video convertFromJsonModel(_Video _video){
-        if (_video == null) { return null; }
-
-        Video video = new Video();
-        video.id = _video.id;
-        video.url = _video.url;
-        video.imageUrl = _video.image_url;
-        video.playerUrl = _video.player_url;
-        video.name = _video.name;
-        video.kind = _video.kind;
-        video.hosting = _video.hosting;
-
-        return video;
-    }
-
-    public static Video[] convertFromJsonModel(_Video[] _videos){
-        if (_videos == null || _videos.length == 0) { return null; }
-
-        Video[] videos = new Video[_videos.length];
-        for (int i = 0; i < _videos.length; i++){
-            videos[i] = Video.convertFromJsonModel(_videos[i]);
-        }
-
-        return videos;
     }
 
 }

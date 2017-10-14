@@ -1,5 +1,7 @@
 package ru.shikimori.api.models.json;
 
+import ru.shikimori.api.models.UserShort;
+
 public class _Message {
 
     public int id;
@@ -9,7 +11,7 @@ public class _Message {
     public String html_body;
     public String created_at;
     //public _MessageLink linked;
-    public _UserShortInfo from;
-    public _UserShortInfo to;
+    public UserShort from;
+    public UserShort to;
 
 }

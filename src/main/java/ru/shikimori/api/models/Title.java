@@ -1,51 +1,81 @@
 package ru.shikimori.api.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import ru.shikimori.api.constants.TitleProgressStatus;
 import ru.shikimori.api.models.json._NameValueClass;
 
 public abstract class Title extends TitleShort {
 
+    @SerializedName("english")
+    @Expose
     protected String[] englishNames;
+
+    @SerializedName("japanes")
+    @Expose
     protected String[] japanesNames;
+
+    @SerializedName("synonyms")
+    @Expose
     protected String[] otherNames;
+
+    @SerializedName("score")
+    @Expose
     protected double score;
+
+    @SerializedName("description")
+    @Expose
     protected String description;
+
+    @SerializedName("description_html")
+    @Expose
     protected String descriptionHtml;
+
+    @SerializedName("description_source")
+    @Expose
     protected String descriptionSource; // (?)
+
+    @SerializedName("favoured")
+    @Expose
     protected boolean favoured;
+
+    @SerializedName("anons")
+    @Expose
     protected boolean anons;
+
+    @SerializedName("ongoing")
+    @Expose
     protected boolean ongoing;
+
+    @SerializedName("thread_id")
+    @Expose
     protected int threadId;
+
+    @SerializedName("topic_id")
+    @Expose
     protected int topicId;
+
+    @SerializedName("myanimelist_id")
+    @Expose
     protected int myanimelistId;
+
+    @SerializedName("rates_scores_stats")
+    @Expose
     protected _NameValueClass[] ratesScoresStats;
+
+    @SerializedName("rates_statuses_stats")
+    @Expose
     protected _NameValueClass[] ratesStatusesStats;
+
+    @SerializedName("genres")
+    @Expose
     protected Genre[] genres;
+
+    @SerializedName("user_rate")
+    @Expose
     protected UserRateShort userRate;
 
     protected Title() {}
-
-    /*public Title(_TitleFullInfo _title){
-        super(_title);
-        if (_title == null) { return; }
-        this.englishNames = _title.english;
-        this.japanesNames = _title.japanes;
-        this.otherNames = _title.synonyms;
-        this.score = _title.score;
-        this.description = _title.description;
-        this.descriptionHtml = _title.description_html;
-        this.descriptionSource = _title.description_source;
-        this.favoured = _title.favoured;
-        this.anons = _title.anons;
-        this.ongoing = _title.ongoing;
-        this.threadId = _title.thread_id;
-        this.topicId = _title.topic_id;
-        this.myanimelistId = _title.myanimelist_id;
-        this.ratesScoresStats = _title.rates_scores_stats;
-        this.ratesStatusesStats = _title.rates_statuses_stats;
-        for (int i = 0; i < _title.genres.length; i++) { this.getGenres()[i] = Genre.convertFromJsonModel(_title.genres[i]); }
-        this.userRate = UserRateShort.convertFromJsonModel(_title.user_rate);
-    }*/
 
     public String[] getEnglishNames() {
         return englishNames;

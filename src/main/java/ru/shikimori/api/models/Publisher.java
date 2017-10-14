@@ -1,33 +1,26 @@
 package ru.shikimori.api.models;
 
-import ru.shikimori.api.models.json._Publisher;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Publisher {
 
+    @SerializedName("id")
+    @Expose
     private int id;
+
+    @SerializedName("name")
+    @Expose
     private String name;
 
     private Publisher(){}
 
-    public static Publisher convertFromJsonModel(_Publisher _publisher){
-        if (_publisher == null) { return null; }
-
-        Publisher publisher = new Publisher();
-        publisher.id = _publisher.id;
-        publisher.name = _publisher.name;
-
-        return publisher;
+    public int getId() {
+        return id;
     }
 
-    public static Publisher[] convertFromJsonModel(_Publisher[] _publishers){
-        if (_publishers == null || _publishers.length == 0) { return null; }
-
-        Publisher[] publishers = new Publisher[_publishers.length];
-        for (int i = 0; i < _publishers.length; i++){
-            publishers[i] = Publisher.convertFromJsonModel(_publishers[i]);
-        }
-
-        return publishers;
+    public String getName() {
+        return name;
     }
 
 }

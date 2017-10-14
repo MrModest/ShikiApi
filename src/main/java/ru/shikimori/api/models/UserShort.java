@@ -1,34 +1,34 @@
 package ru.shikimori.api.models;
 
-import org.apache.commons.lang3.StringUtils;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import ru.shikimori.api.constants.ShikiConst;
 import ru.shikimori.api.constants.enums.TitleType;
 import ru.shikimori.api.models.exceptions.ErrorStack;
-import ru.shikimori.api.models.json._ImageUser;
-import ru.shikimori.api.models.json._UserFullInfo;
-import ru.shikimori.api.models.json._UserRate;
-import ru.shikimori.api.models.json._UserShortInfo;
 import ru.shikimori.api.requests.QueryShell;
+import ru.shikimori.api.utils.DateUtils;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class UserShort {
 
+    @SerializedName("id")
+    @Expose
     protected int id;
+
+    @SerializedName("nickname")
+    @Expose
     protected String nickname;
-    protected _ImageUser avatar;
-    protected LocalDateTime lastOnline;
+
+    @SerializedName("image")
+    @Expose
+    protected UserImage avatar;
+
+    @SerializedName("last_online_at")
+    @Expose
+    protected String lastOnline;
 
     protected UserShort(){}
-
-    /*public UserShort(_UserShortInfo _userShort){
-        if (_userShort == null){ return; }
-        this.id           = _userShort.id;
-        this.nickname     = _userShort.nickname;
-        this.avatar       = _userShort.image;
-        this.lastOnline   = LocalDateTime.parse(_userShort.last_online_at, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
-    }*/
 
     public int getId(){
         return id;
@@ -36,12 +36,12 @@ public class UserShort {
 
     public String getNickname() { return nickname; }
 
-    public _ImageUser getAvatar() {
+    public UserImage getAvatar() {
         return avatar;
     }
 
     public LocalDateTime getLastOnline() {
-        return lastOnline;
+        return DateUtils.formatDateTimeFromString(lastOnline);
     }
 
 
@@ -60,8 +60,8 @@ public class UserShort {
 
     public static User getUserById(int userId){
         if (userId < 0){ return null; }
-        _UserFullInfo _user = QueryShell.get("users/" + userId, _UserFullInfo.class);
-        return User.convertFromJsonModel(_user);
+        User user = QueryShell.get("users/" + userId, User.class);
+        return user;
     }
 
     public static User getUserByCredential(Credential credential){
@@ -70,20 +70,14 @@ public class UserShort {
 
     public static UserShort[] getFriendsById(int userId) throws NullPointerException {
 
-        _UserShortInfo[] _friendList;
+        UserShort[] friendList;
 
         try {
-            _friendList = QueryShell.get("users/" + userId + "/friends", _UserShortInfo[].class);
+            friendList = QueryShell.get("users/" + userId + "/friends", UserShort[].class);
         }
         catch (NullPointerException ex){
             ErrorStack.PushLocalError("User.getFriendsById()", ex.getMessage() + " (probably user not found or too many requests [404 or 429])");
             throw ex;
-        }
-
-        UserShort[] friendList = new UserShort[_friendList.length];
-
-        for (int i = 0; i < _friendList.length; i++){
-            friendList[i] = UserShort.convertFromJsonModel(_friendList[i]);
         }
 
         return friendList;
@@ -91,19 +85,8 @@ public class UserShort {
 
     public static UserRate[] getUserRatesById(int user_id, TitleType titleType){
         String url = "users/" + user_id + "/" + titleType.name().toLowerCase() + "_rates?limit=" + ShikiConst.LIMIT_MAX;
-        _UserRate[] _userRates = QueryShell.get(url, _UserRate[].class);
-        return UserRate.convertFromJsonModel(_userRates);
+        UserRate[] userRates = QueryShell.get(url, UserRate[].class);
+        return userRates;
     }
 
-    public static UserShort convertFromJsonModel(_UserShortInfo _userShort){
-        if (_userShort == null){ return null; }
-
-        UserShort userShort = new UserShort();
-        userShort.id           = _userShort.id;
-        userShort.nickname     = _userShort.nickname;
-        userShort.avatar       = _userShort.image;
-        userShort.lastOnline   = StringUtils.isNotBlank(_userShort.last_online_at) ? LocalDateTime.parse(_userShort.last_online_at, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")) : null;
-
-        return userShort;
-    }
 }
