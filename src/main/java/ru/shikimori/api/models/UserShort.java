@@ -60,8 +60,7 @@ public class UserShort {
 
     public static User getUserById(int userId){
         if (userId < 0){ return null; }
-        User user = QueryShell.get("users/" + userId, User.class);
-        return user;
+        return QueryShell.get("users/" + userId, User.class);
     }
 
     public static User getUserByCredential(Credential credential){
@@ -85,8 +84,7 @@ public class UserShort {
 
     public static UserRate[] getUserRatesById(int user_id, TitleType titleType){
         String url = "users/" + user_id + "/" + titleType.name().toLowerCase() + "_rates?limit=" + ShikiConst.LIMIT_MAX;
-        UserRate[] userRates = QueryShell.get(url, UserRate[].class);
-        return userRates;
+        return QueryShell.get(url, UserRate[].class);
     }
 
 }

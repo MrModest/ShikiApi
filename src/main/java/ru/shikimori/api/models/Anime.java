@@ -103,9 +103,8 @@ public class Anime extends Title {
         if (StringUtils.isNotBlank(filter.getSearchText())) { url += "search=" + filter.getSearchText(); }
         if (StringUtils.isNotBlank(filter.getOrder())) { url += "&order=" + filter.getOrder(); }
 
-        AnimeShort[] _animeShort = (credential != null) ?
+        return  (credential != null) ?
                 QueryShell.get(url, AnimeShort[].class, credential) : QueryShell.get(url, AnimeShort[].class);
-        return _animeShort;
     }
 
     public static AnimeShort[] searchByFilter(AnimeFilter filter){
