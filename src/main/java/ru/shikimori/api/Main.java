@@ -19,7 +19,7 @@ public class Main {
 
         //*
         //Credential credential = new Credential("test2", "123");
-        Credential credential = new Credential("MrModest", "kamil2322332");
+        Credential credential = new Credential(Temp.nickname, Temp.password);
         if (!credential.isLoginSuccess()){
             outString = "login failed!\n";
         }
