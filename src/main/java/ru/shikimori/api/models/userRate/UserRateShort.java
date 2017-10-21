@@ -1,4 +1,4 @@
-package ru.shikimori.api.models;
+package ru.shikimori.api.models.userRate;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +14,7 @@ public class UserRateShort {
     @Expose
     protected int score;
 
-    @SerializedName("status")
+    @SerializedName("releaseStatus")
     @Expose
     protected String status;
 
@@ -86,6 +86,20 @@ public class UserRateShort {
 
     public static UserRateV2[] getUserRatesByUserId(int user_id){
         return QueryShell.get("v2/user_rates?user_id=" + user_id, UserRateV2[].class);
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (other == this) return true;
+
+        try {
+            UserRateShort otherTitleShort = (UserRateShort) other;
+            return this.id == otherTitleShort.id;
+        }
+        catch (Exception ex){
+            return false;
+        }
     }
 
 }

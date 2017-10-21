@@ -1,6 +1,8 @@
 package ru.shikimori.api.constants.enums;
 
-public enum  Order {
+import ru.shikimori.api.models.filter.Filterable;
+
+public enum Order implements Filterable {
     id,
     ranked,
     type, // kind
@@ -12,4 +14,10 @@ public enum  Order {
     chapters,
     status,
     random
+    ;
+
+    @Override
+    public String getFilterData() {
+        return this.name();
+    }
 }

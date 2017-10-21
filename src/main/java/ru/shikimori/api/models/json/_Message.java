@@ -1,6 +1,6 @@
 package ru.shikimori.api.models.json;
 
-import ru.shikimori.api.models.UserShort;
+import ru.shikimori.api.models.user.UserShort;
 
 public class _Message {
 

@@ -2,8 +2,9 @@ package ru.shikimori.api.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import ru.shikimori.api.models.filter.Filterable;
 
-public class Genre {
+public class Genre implements Filterable {
 
     @SerializedName("id")
     @Expose
@@ -37,5 +38,21 @@ public class Genre {
 
     public String getKind() {
         return kind;
+    }
+
+    @Override
+    public String getFilterData() {
+        return Integer.toString(this.id);
+    }
+
+
+    public static Genre[] getEmpty(int... ids){
+        Genre[] genres = new Genre[ids.length];
+        for(int i = 0; i < ids.length; i++){
+            Genre genre = new Genre();
+            genre.id = ids[i];
+            genres[i] = genre;
+        }
+        return genres;
     }
 }

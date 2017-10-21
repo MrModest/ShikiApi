@@ -1,6 +1,8 @@
 package ru.shikimori.api.constants.enums;
 
-public enum AnimeRating {
+import ru.shikimori.api.models.filter.Filterable;
+
+public enum AnimeRating implements Filterable {
     none,   // No rating
     g,      // G - All ages
     pg,     // PG - Children
@@ -8,4 +10,10 @@ public enum AnimeRating {
     r,      // R - 17+ recommended (violence & profanity)
     r_plus, // R+ - Mild Nudity (may also contain violence & profanity)
     rx      // Rx - Hentai (extreme sexual content/nudity)
+    ;
+
+    @Override
+    public String getFilterData() {
+        return this.name();
+    }
 }

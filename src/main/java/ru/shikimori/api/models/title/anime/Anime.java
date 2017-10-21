@@ -1,8 +1,11 @@
-package ru.shikimori.api.models;
+package ru.shikimori.api.models.title.anime;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang3.StringUtils;
+import ru.shikimori.api.constants.enums.AnimeKind;
+import ru.shikimori.api.models.*;
+import ru.shikimori.api.models.filter.AnimeFilter;
+import ru.shikimori.api.models.title.Title;
 import ru.shikimori.api.requests.QueryShell;
 import ru.shikimori.api.utils.DateUtils;
 
@@ -46,7 +49,12 @@ public class Anime extends Title {
     @Expose
     private TitleScreenshot[] screenshots;
 
-    private Anime(){}
+    //private Anime(){}
+
+    @Override
+    public AnimeKind getKind(){
+        return AnimeKind.fromString(this.kind);
+    }
 
     public int getEpisodes() {
         return episodes;
@@ -97,18 +105,12 @@ public class Anime extends Title {
         return QueryShell.get("animes/" + titleId, Anime.class, credential);
     }
 
-    public static AnimeShort[] searchByFilter(AnimeFilter filter, Credential credential){ //WARNING!!!
-        String url = "animes?";
-
-        if (StringUtils.isNotBlank(filter.getSearchText())) { url += "search=" + filter.getSearchText(); }
-        if (StringUtils.isNotBlank(filter.getOrder())) { url += "&order=" + filter.getOrder(); }
-
-        return  (credential != null) ?
-                QueryShell.get(url, AnimeShort[].class, credential) : QueryShell.get(url, AnimeShort[].class);
+    public static AnimeFilter newSearch(){
+        return new AnimeFilter();
     }
 
-    public static AnimeShort[] searchByFilter(AnimeFilter filter){
-        return searchByFilter(filter, null);
+    public static AnimeFilter newSearch(String searchText){
+        return new AnimeFilter(searchText);
     }
 
 }

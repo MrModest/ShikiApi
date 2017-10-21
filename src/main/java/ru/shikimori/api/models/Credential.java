@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import ru.shikimori.api.models.exceptions.ErrorStack;
 import ru.shikimori.api.models.json._AccessToken;
 import ru.shikimori.api.models.json._WhoAmI;
+import ru.shikimori.api.models.user.User;
 import ru.shikimori.api.requests.QueryShell;
 
 import java.util.HashMap;
@@ -28,14 +29,14 @@ public class Credential {
 
         this.id = getUserId(nickname, token);
 
-        this.currentUser = User.getUserByCredential(this);
+        this.currentUser = User.getByCredential(this);
     }
 
     public Credential(String nickname, String token, int id) {
         this.id = id;
         this.nickname = nickname;
         this.token = token;
-        this.currentUser = User.getUserByCredential(this);
+        this.currentUser = User.getByCredential(this);
     }
 
     public int getId() {

@@ -1,6 +1,6 @@
 package ru.shikimori.api.constants;
 
-public class TitleRating {
+public class AnimeRating {
 
     public final static String G = "g";
     public final static String PG = "pg";

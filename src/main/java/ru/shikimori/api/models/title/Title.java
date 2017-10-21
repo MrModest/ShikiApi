@@ -1,8 +1,10 @@
-package ru.shikimori.api.models;
+package ru.shikimori.api.models.title;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import ru.shikimori.api.constants.TitleProgressStatus;
+import ru.shikimori.api.models.Genre;
+import ru.shikimori.api.models.userRate.UserRateShort;
 import ru.shikimori.api.models.json._NameValueClass;
 
 public abstract class Title extends TitleShort {
@@ -75,7 +77,7 @@ public abstract class Title extends TitleShort {
     @Expose
     protected UserRateShort userRate;
 
-    protected Title() {}
+    //protected Title() {}
 
     public String[] getEnglishNames() {
         return englishNames;
@@ -130,9 +132,9 @@ public abstract class Title extends TitleShort {
     }
 
     public int getRatesScoresStats(int score) {
-        for (int i = 0; i < ratesScoresStats.length; i++){
-            if (ratesScoresStats[i].name.equalsIgnoreCase(new Integer(score).toString())){
-                return ratesScoresStats[i].value;
+        for (_NameValueClass ratesScoresStat : ratesScoresStats) {
+            if (ratesScoresStat.name.equalsIgnoreCase(Integer.toString(score))) {
+                return ratesScoresStat.value;
             }
         }
 

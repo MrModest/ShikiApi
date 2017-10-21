@@ -1,7 +1,10 @@
-package ru.shikimori.api.models;
+package ru.shikimori.api.models.title;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import ru.shikimori.api.constants.enums.AnimeKind;
+import ru.shikimori.api.constants.enums.TitleReleaseStatus;
+import ru.shikimori.api.models.TitleImage;
 import ru.shikimori.api.utils.DateUtils;
 
 import java.time.LocalDate;
@@ -34,7 +37,7 @@ public abstract class TitleShort {
 
     @SerializedName("status")
     @Expose
-    protected String status;
+    protected String releaseStatus;
 
     @SerializedName("aired_on")
     @Expose
@@ -44,7 +47,7 @@ public abstract class TitleShort {
     @Expose
     protected String releasedDate;
 
-    protected TitleShort(){}
+    //protected TitleShort(){}
 
     public int getId() {
         return id;
@@ -66,12 +69,12 @@ public abstract class TitleShort {
         return url;
     }
 
-    public String getKind() {
+    public Object getKind() {
         return kind;
     }
 
-    public String getStatus() {
-        return status;
+    public TitleReleaseStatus getReleaseStatus() {
+        return TitleReleaseStatus.valueOf(releaseStatus);
     }
 
     public LocalDate getAiredDate() {
@@ -80,6 +83,21 @@ public abstract class TitleShort {
 
     public LocalDate getReleasedDate() {
         return DateUtils.formatDateFromString(releasedDate);
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (other == null) return false;
+        if (other == this) return true;
+        if (this.getClass() != other.getClass()) return false;
+
+        try {
+            TitleShort otherTitleShort = (TitleShort) other;
+            return this.id == otherTitleShort.id;
+        }
+        catch (Exception ex){
+            return false;
+        }
     }
 
 }

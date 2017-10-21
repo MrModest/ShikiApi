@@ -10,5 +10,9 @@ public class ShikiConst {
 
     public final static String DEFAULT_CLIENT_NAME = "Shiki Java Api";
 
-    public final static int LIMIT_MAX = 5000;
+    public final static int LIMIT_MAX = 100000;
+
+    public final static int LIMIT_ON_PAGE = 50;
+
+
 }

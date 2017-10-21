@@ -1,7 +1,12 @@
-package ru.shikimori.api.models;
+package ru.shikimori.api.models.title.manga;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import ru.shikimori.api.constants.enums.MangaKind;
+import ru.shikimori.api.models.Credential;
+import ru.shikimori.api.models.Publisher;
+import ru.shikimori.api.models.filter.MangaFilter;
+import ru.shikimori.api.models.title.Title;
 import ru.shikimori.api.requests.QueryShell;
 
 public class Manga extends Title {
@@ -18,7 +23,12 @@ public class Manga extends Title {
     @Expose
     private Publisher[] publishers;
 
-    private Manga(){}
+    //private Manga(){}
+
+    @Override
+    public MangaKind getKind(){
+        return MangaKind.fromString(this.kind);
+    }
 
     public int getVolumes() {
         return volumes;
@@ -42,6 +52,14 @@ public class Manga extends Title {
         if (titleId < 1) { return null; }
 
         return QueryShell.get("mangas/" + titleId, Manga.class, credential);
+    }
+
+    public static MangaFilter newSearch(){
+        return new MangaFilter();
+    }
+
+    public static MangaFilter newSearch(String searchText){
+        return new MangaFilter(searchText);
     }
 
 }

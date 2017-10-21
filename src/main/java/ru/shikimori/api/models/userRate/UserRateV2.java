@@ -1,4 +1,4 @@
-package ru.shikimori.api.models;
+package ru.shikimori.api.models.userRate;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
